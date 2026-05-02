@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokéFila — Simulador de Fila FIFO</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-poke">Poké</span><span class="logo-fila">Fila</span>
+      </div>
+      <p class="subtitle">Simulador de Estrutura de Dados — Fila (FIFO)</p>
+    </div>
+    <div class="scanlines"></div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main>
+
+    <!-- PAINEL ESQUERDO: ADICIONAR À FILA -->
+    <section class="panel panel-left">
+      <h2 class="panel-title">⚔️ Recrutar Pokémon</h2>
+
+      <div class="search-box">
+        <label for="poke-input">Nome ou número:</label>
+        <div class="input-row">
+          <input
+            type="text"
+            id="poke-input"
+            placeholder="ex: pikachu, 25..."
+            autocomplete="off"
+          />
+          <button id="btn-search" class="btn btn-primary">BUSCAR</button>
+        </div>
+      </div>
+
+      <!-- Card de preview -->
+      <div id="preview-card" class="poke-preview hidden">
+        <div class="preview-inner">
+          <img id="preview-img" src="" alt="" />
+          <div class="preview-info">
+            <p class="preview-name" id="preview-name">—</p>
+            <p class="preview-id" id="preview-id">#000</p>
+            <div id="preview-types" class="type-badges"></div>
+            <div class="preview-stats" id="preview-stats"></div>
+          </div>
+        </div>
+        <button id="btn-enqueue" class="btn btn-enqueue">
+          + ADICIONAR À FILA
+        </button>
+      </div>
+
+      <div id="search-error" class="error-msg hidden">
+        ❌ Pokémon não encontrado!
+      </div>
+
+      <div id="loading" class="loading hidden">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+
+      <!-- INSTRUÇÕES FIFO -->
+      <div class="fifo-explain">
+        <h3>📚 Como funciona a Fila?</h3>
+        <div class="fifo-steps">
+          <div class="step">
+            <span class="step-icon">1️⃣</span>
+            <span><strong>ENQUEUE</strong> — Adiciona ao final da fila</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">2️⃣</span>
+            <span><strong>DEQUEUE</strong> — Remove do início (primeiro a entrar, primeiro a sair)</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">3️⃣</span>
+            <span><strong>PEEK</strong> — Visualiza o próximo sem remover</span>
+          </div>
+          <div class="step">
+            <span class="step-icon">4️⃣</span>
+            <span><strong>FIFO</strong> — First In, First Out!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAINEL CENTRAL: FILA ATUAL -->
+    <section class="panel panel-center">
+      <h2 class="panel-title">🎯 Fila de Batalha</h2>
+
+      <div class="queue-meta">
+        <span class="badge-info">Tamanho: <strong id="queue-size">0</strong></span>
+        <span class="badge-info">Frente: <strong id="queue-front">—</strong></span>
+        <span class="badge-info">Fundo: <strong id="queue-rear">—</strong></span>
+      </div>
+
+      <div class="queue-actions">
+        <button id="btn-dequeue" class="btn btn-danger" disabled>
+          ▶ DEQUEUE (Batalhar)
+        </button>
+        <button id="btn-peek" class="btn btn-secondary" disabled>
+          👁 PEEK
+        </button>
+        <button id="btn-clear" class="btn btn-ghost" disabled>
+          🗑 LIMPAR
+        </button>
+      </div>
+
+      <!-- Fila Visual -->
+      <div class="queue-visual-wrapper">
+        <div class="queue-label queue-label-front">← FRENTE (saída)</div>
+        <div id="queue-visual" class="queue-visual">
+          <div class="queue-empty-msg" id="queue-empty">
+            <span>A fila está vazia!</span>
+            <small>Adicione Pokémon pelo painel ao lado</small>
+          </div>
+        </div>
+        <div class="queue-label queue-label-rear">FUNDO (entrada) →</div>
+      </div>
+
+      <!-- Peek Info -->
+      <div id="peek-info" class="peek-box hidden">
+        <p>👁 Próximo na fila: <strong id="peek-name">—</strong></p>
+      </div>
+    </section>
+
+    <!-- PAINEL DIREITO: LOG DE BATALHAS -->
+    <section class="panel panel-right">
+      <h2 class="panel-title">🏆 Arena de Batalha</h2>
+
+      <div id="battle-arena" class="battle-arena">
+        <div class="arena-idle">
+          <div class="arena-idle-icon">⚔️</div>
+          <p>Aguardando batalha...</p>
+          <small>Use DEQUEUE para enviar o próximo Pokémon para batalhar!</small>
+        </div>
+      </div>
+
+      <div class="log-wrapper">
+        <h3 class="log-title">📋 Log de Operações</h3>
+        <ul id="operation-log" class="operation-log">
+          <li class="log-init">Sistema iniciado. Fila vazia. <span class="log-time" id="init-time"></span></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
