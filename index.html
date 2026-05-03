@@ -70,19 +70,15 @@
         <div class="fifo-steps">
           <div class="step">
             <span class="step-icon">1️⃣</span>
-            <span><strong>ENQUEUE</strong> — Adiciona ao final da fila</span>
+            <span><strong>ENFILEIRAR</strong> — Entra no final</span>
           </div>
           <div class="step">
             <span class="step-icon">2️⃣</span>
-            <span><strong>DEQUEUE</strong> — Remove do início (primeiro a entrar, primeiro a sair)</span>
+            <span><strong>DESENFILEIRAR</strong> — Sai pela frente</span>
           </div>
           <div class="step">
             <span class="step-icon">3️⃣</span>
-            <span><strong>PEEK</strong> — Visualiza o próximo sem remover</span>
-          </div>
-          <div class="step">
-            <span class="step-icon">4️⃣</span>
-            <span><strong>FIFO</strong> — First In, First Out!</span>
+            <span><strong>FIFO</strong> — First-In, First-Out</span>
           </div>
         </div>
       </div>
@@ -90,17 +86,16 @@
 
     <!-- PAINEL CENTRAL: FILA ATUAL -->
     <section class="panel panel-center">
-      <h2 class="panel-title">🎯 Fila de Batalha</h2>
+      <h2 class="panel-title">🎯 Fila de Desafiantes</h2>
 
       <div class="queue-meta">
-        <span class="badge-info">Tamanho: <strong id="queue-size">0</strong></span>
+        <span class="badge-info">Fila: <strong id="queue-size">0</strong></span>
         <span class="badge-info">Frente: <strong id="queue-front">—</strong></span>
-        <span class="badge-info">Fundo: <strong id="queue-rear">—</strong></span>
       </div>
 
       <div class="queue-actions">
         <button id="btn-dequeue" class="btn btn-danger" disabled>
-          ▶ DEQUEUE (Batalhar)
+          ▶ DESENFILEIRAR (Batalhar)
         </button>
         <button id="btn-peek" class="btn btn-secondary" disabled>
           👁 PEEK
@@ -110,40 +105,37 @@
         </button>
       </div>
 
-      <!-- Fila Visual -->
       <div class="queue-visual-wrapper">
-        <div class="queue-label queue-label-front">← FRENTE (saída)</div>
+        <div class="queue-label queue-label-front">← FRENTE (Saída)</div>
         <div id="queue-visual" class="queue-visual">
           <div class="queue-empty-msg" id="queue-empty">
-            <span>A fila está vazia!</span>
-            <small>Adicione Pokémon pelo painel ao lado</small>
+            <span>Fila de espera vazia...</span>
           </div>
         </div>
-        <div class="queue-label queue-label-rear">FUNDO (entrada) →</div>
+        <div class="queue-label queue-label-rear">FUNDO (Entrada) →</div>
       </div>
 
-      <!-- Peek Info -->
       <div id="peek-info" class="peek-box hidden">
-        <p>👁 Próximo na fila: <strong id="peek-name">—</strong></p>
+        <p>👁 Próximo: <strong id="peek-name">—</strong></p>
       </div>
     </section>
 
-    <!-- PAINEL DIREITO: LOG DE BATALHAS -->
+    <!-- PAINEL DIREITO: ARENA DE BATALHA -->
     <section class="panel panel-right">
-      <h2 class="panel-title">🏆 Arena de Batalha</h2>
+      <h2 class="panel-title">🏆 Arena Boss</h2>
 
+      <!-- IMPORTANTE: O conteúdo aqui será substituído pelo Boss fixo via JS -->
       <div id="battle-arena" class="battle-arena">
-        <div class="arena-idle">
-          <div class="arena-idle-icon">⚔️</div>
-          <p>Aguardando batalha...</p>
-          <small>Use DEQUEUE para enviar o próximo Pokémon para batalhar!</small>
+        <div class="loading">
+          <span class="dot"></span>
+          <p>Convocando Boss...</p>
         </div>
       </div>
 
       <div class="log-wrapper">
         <h3 class="log-title">📋 Log de Operações</h3>
         <ul id="operation-log" class="operation-log">
-          <li class="log-init">Sistema iniciado. Fila vazia. <span class="log-time" id="init-time"></span></li>
+          <li class="log-init">Conectando ao PokéAPI... <span class="log-time" id="init-time"></span></li>
         </ul>
       </div>
     </section>
