@@ -89,7 +89,8 @@ async function buscarPokemon(nomeouid) {
 // 5. LÓGICA DE BUSCA E BOSS
 // ============================================================
 
-// Carrega os nomes de 1000 pokémons para permitir busca por "contém"
+// Carrega os nomes de 1000 pokémons para permitir busca por "contém" 
+// embora possa haver confusão devido aos nomes na pokeapi e de fato o seus nomes corretos.
 async function carregarListaNomes() {
   try {
     const resposta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
