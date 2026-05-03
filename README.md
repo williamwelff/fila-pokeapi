@@ -1,5 +1,8 @@
 # 🚀 Projeto Fila com PokeAPI
 
+## 👥 Integrantes
+Maria Luiza RIbeiro X. Dias, Pablo Werneck Corrêa, Renan Matos e William Welff
+
 Projeto desenvolvido para simular uma estrutura de dados do tipo **Fila (FIFO)** utilizando JavaScript e consumo da API pública PokeAPI.
 
 ## 📚 Tecnologias utilizadas
